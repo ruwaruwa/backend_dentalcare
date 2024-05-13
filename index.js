@@ -25,7 +25,7 @@ app.use(reportRoute)
 
 
 
-app.get('/', (req, res) => {
+app.get('/',async (req, res) => {
   res.send('Hello dental!');
 });
 
