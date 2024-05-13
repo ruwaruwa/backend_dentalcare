@@ -3,12 +3,22 @@ const dataconfig=require('./databse/dataconfig')
 const app = express();
 dataconfig();
 app.use(express.json());
-
+const cors=require('cors');
+app.use(cors())
 const patientRoute = require('./routers/patientRoute')
 const srvice =require('./routers/serviceroute')
-
+const peymentRoute = require('./routers/peymentroute')
+const userRoute = require('./routers/userRoute')
+const loginRoute = require('./routers/loginRoutes')
+const authenticationRoute = require('./routers/Authentication');
+const reportRoute = require('./routers/reportroutes')
 app.use(patientRoute)
 app.use(srvice)
+app.use(peymentRoute)
+app.use(userRoute );
+//authenticationRoute('user')
+app.use(loginRoute)
+app.use(reportRoute)
 
 
 

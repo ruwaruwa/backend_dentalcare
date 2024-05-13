@@ -56,10 +56,10 @@ try {
     try {
         const getallservice=await servicemodel.find()
         if(getallservice){
-            res.status(200).json(getallservice)
+            res.status(200).send(getallservice)
         }
         else{
-            res.status(400).json({
+            res.status(400).send({
                 message:"service not found"
             })
         }

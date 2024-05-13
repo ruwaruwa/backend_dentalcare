@@ -8,7 +8,8 @@ const patientvalidation=(pvaldate)=>{
         age:joi.number().required(),
         gender:joi.string().required(),
         address:joi.string().required(),
-        phone:joi.number().required()
+        phone:joi.number().required(),
+        date:joi.date().required(),
     })
     return schemavalida.validate(pvaldate);
 }

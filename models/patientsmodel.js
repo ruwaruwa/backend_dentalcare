@@ -24,7 +24,10 @@ const patientSchema=mongoonse.Schema({
         type:String,
         required:true
     },
-
+date:{
+    type:Date,
+    required:true
+}
 },{timestamo:true})
 
 module.exports=mongoonse.model('patientmodel',patientSchema)

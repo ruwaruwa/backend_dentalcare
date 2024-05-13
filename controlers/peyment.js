@@ -1,10 +1,14 @@
-const join = require('join');
+const joi = require('joi');
 const peymentmodel = require('../models/peyment')
 //get all
 
 const getallpeyment= async (req, res) => {
     try {
-        const peyment = await peymentmodel.find();
+        const peyment = await peymentmodel.find().populate({
+            path:'serviceid',
+            model:'servicemodel',
+  select:"name"
+        });
         res.json(peyment);
     } catch (err) {
         res.json({ message: err });
@@ -23,13 +27,16 @@ const getpeymentbyid = async (req, res) => {
 //validation
 
 const validatepeyment = (valid) => {
-    const schema = Joi.object({
-        name: Joi.string().min(3).required(),
-        email: Joi.string().min(3).required().email(),
-        password: Joi.string().min(3).required(),
-        phone: Joi.string().min(3).required(),
+    const schema = joi.object({
+        id:joi.string().required(),
+        serviceid: joi.string().min(3).required(),
+        amount: joi.number().min(3).required(),
+        paid: joi.number(),
+        rest: joi.number(),
+        descrbtion: joi.string().required(),
+        date: joi.date().required(),
     });
-    const result = schema.validate(valid);
+    return  schema.validate(valid);
   
 }
 //post
@@ -44,10 +51,10 @@ const addpeyment = async (req, res) => {
             res.send(peyment);
         }
         else{
-            res.send({ message: "error" });
+            res.send(error.message);
         }
     } catch (error) {
-        res.json({ message: error });
+        res.json(error.message);
     }
 }
 //update
