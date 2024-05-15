@@ -1,9 +1,10 @@
 const joi =require('joi');
 const patientmodel=require('../models/patientsmodel');
+const paymenModel =require('../models/peyment')
 //validation 
 const patientvalidation=(pvaldate)=>{
     const schemavalida=joi.object({
-        pid:joi.number().required(),
+        // pid:joi.number().required(),
         name:joi.string().required(),
         age:joi.number().required(),
         gender:joi.string().required(),
@@ -108,11 +109,49 @@ const getByidpatient=async(req,res)=>{
             res.status(400).send('arror')
         }
     }
+    //add payment
+    const FindpymentAndKUDALAC=async(req,res)=>{
+        try {
+            const addpayment =await paymenModel(req.body)
+            const payment = await addpayment.save();
+            if(payment){
+                res.status(200).json({
+                    message:"payment added successfully",payment:payment
+                })
+            }
+            else{
+                res.status(400).json({
+                    message:"payment not added"
+                })
+            }
+    }catch (error) {
+        res.status(400).send('arror')
+    }
+    
+}
+    //get payment
+const GtepaymentBYid=async(req,res)=>{
+    try {
+        const payment=await paymenModel.findOne();
+        if(payment){
+            res.status(200).json(payment)
+        }
+        else{
+            res.status(400).json({
+                message:"payment not found"
+            })
+        }
+    } catch (error) {
+        res.status(400).send('arror')
+    }
+}
+
 module.exports={
     regesterpatient,
     getpatient,
     updatepatient,
     getByidpatient,
-    deletepatient
-
+    deletepatient,
+    FindpymentAndKUDALAC,
+    GtepaymentBYid
 }

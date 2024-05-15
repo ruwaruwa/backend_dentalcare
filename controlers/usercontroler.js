@@ -36,31 +36,43 @@ const validateusers = (valid) => {
 }
 //create user
 
-const createuser= async (req, res) => {
-    const {error}=validateusers(req.body);
-    if (error) return res.status(405).send(error.message);
-    //nst aadnewuser =
-    try {
-        const addedusers = await usermodel(req.body)
-        addedusers.password= await bcrtp.hash(addedusers.password,10);
-        //hadii ow hore u jiray
-        const alluse=await usermodel.find({email:req.body.email})
-        if(alluse.length>0){
-            res.status(409).json({
-                status:false,
-                message:"this user already exist"
-            })
-        }
-        const users = await addedusers.save();
-        if(users){
-            res.status(200).send(users);
-        }
-        else{
-            res.send({ message: "error" });
-        }
-    } catch (error) {
-        res.status(400).send(error.message)
+// const createuser= async (req, res) => {
+//     const {error}=validateusers(req.body);
+//     if (error) return res.status(405).send(error.message);
+//     //nst aadnewuser =
+//     try {
+//         const addedusers = await usermodel(req.body)
+//         addedusers.password= await bcrtp.hash(addedusers.password,10);
+//         //hadii ow hore u jiray
+//         const alluse=await usermodel.find({email:req.body.email})
+//         if(alluse.length>0){
+//             res.status(409).json({
+//                 status:false,
+//                 message:"this user already exist"
+//             })
+//         }
+//         const users = await addedusers.save();
+//         if(users){
+//             res.status(200).send(users);
+//         }
+//         else{
+//             res.send({ message: "error" });
+//         }
+//     } catch (error) {
+//         res.status(400).send(error.message)
+//     }
+// }
+
+const  createuser = async(req,res) => {
+    const newAdmin =  usermodel(req.body)
+    const saveAdmin = await newAdmin.save()
+
+    if (saveAdmin){
+      res.send(newAdmin)
+    }else{
+      res.send({error:"error"})
     }
+    
 }
 //update users
 
@@ -98,6 +110,18 @@ const deleteusers= async (req, res) => {
         res.status(400).send(error.message)
     }
 }
+// finding existing user in the database
+const loginAdmin = async(req, res) => {
+    const AdminData = await usermodel.findOne({
+      email: req.body.email,
+      password: req.body.password
+    })
+    if(AdminData){  
+      res.send(AdminData)
+  }else{
+    res.send({error: "Not Found"})
+  }
+  }
 
 module.exports={
     getallusers,
@@ -105,4 +129,5 @@ module.exports={
     createuser,
     updateusers,
     deleteusers,
+    loginAdmin,
 }

@@ -1,9 +1,9 @@
 const mongoonse=require('mongoose');
 const patientSchema=mongoonse.Schema({
-    pid:{
-        type:Number,
-        required:true
-    },
+    // pid:{
+    //     type:Number,
+    //     required:true
+    // },
     name:{
         type:String,
         required:true

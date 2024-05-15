@@ -10,4 +10,5 @@ patientRoute.put('/patient/:id',patientContorler.updatepatient)
 patientRoute.delete('/patient/:id',patientContorler.deletepatient)
 patientRoute.post('/patient',patientContorler.regesterpatient)
 
+patientRoute.get('/patient/payment/:id',patientContorler.GtepaymentBYid)
 module.exports=patientRoute;

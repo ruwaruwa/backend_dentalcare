@@ -1,3 +1,4 @@
+//const date = require('joi/lib/types/date');
 const mongoose =require('mongoose');
 
 serviceSchema=mongoose.Schema({
@@ -7,6 +8,10 @@ serviceSchema=mongoose.Schema({
     },
     name:{
         type:String,
+        required:true
+    },
+    date:{
+type:String,
         required:true
     }
 })

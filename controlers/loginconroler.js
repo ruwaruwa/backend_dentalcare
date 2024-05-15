@@ -50,6 +50,7 @@ const getlogin=async(req,res)=>{
         res.status(400).send('arror')
     }
 }
+
 module.exports ={
     createlogin,
     getlogin

@@ -3,9 +3,10 @@ const joi =require('joi')
 //validation
 const servicevalida=(val)=>{
     const servalidat=joi.object({
-        id:joi.number().required(),
+        date:joi.string().required(),
         name:joi.string().required(),
-
+        
+id:joi.string().required()
     })
     return servalidat.validate(val)
 }
@@ -87,7 +88,7 @@ try {
    //delete
    const deleteservice=async(req,res)=>{
     try {
-        const deleteone=await servicemodel.findOneAndDelete({_id:req.params.id})
+        const deleteone=await servicemodel.deleteOne({_id:req.params.id})
         if(deleteone){
             res.status(200).json(deleteone)
         }

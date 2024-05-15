@@ -1,9 +1,9 @@
 const express = require('express');
 const dataconfig=require('./databse/dataconfig')
+const cors=require('cors');
 const app = express();
 dataconfig();
 app.use(express.json());
-const cors=require('cors');
 app.use(cors())
 const patientRoute = require('./routers/patientRoute')
 const srvice =require('./routers/serviceroute')
@@ -17,7 +17,7 @@ app.use(srvice)
 app.use(peymentRoute)
 app.use(userRoute );
 //authenticationRoute('user')
-app.use(loginRoute)
+// app.use(loginRoute)
 app.use(reportRoute)
 
 

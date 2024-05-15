@@ -1,10 +1,10 @@
 const mongoose =require('mongoose');
 
 peymentSchema=mongoose.Schema({
-    id:{
-        type:String,
-        required:true
-    },
+    // id:{
+    //     type:String,
+    //     required:true
+    // },
     serviceid:{
     type:mongoose.Types.ObjectId,
 required:true,
@@ -22,13 +22,14 @@ ref:"servicemodel"
         type:Number,
         // required:true
     },
-    descrbtion:{
+    description:{
         type:String,
         required:true
     },
     date:{
-        type:Date,
-       default:true
+        type:String,
+  
+
     },
 
 

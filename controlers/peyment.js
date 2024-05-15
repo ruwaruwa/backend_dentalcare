@@ -7,7 +7,7 @@ const getallpeyment= async (req, res) => {
         const peyment = await peymentmodel.find().populate({
             path:'serviceid',
             model:'servicemodel',
-  select:"name"
+  select:" name id"
         });
         res.json(peyment);
     } catch (err) {
@@ -28,13 +28,13 @@ const getpeymentbyid = async (req, res) => {
 
 const validatepeyment = (valid) => {
     const schema = joi.object({
-        id:joi.string().required(),
-        serviceid: joi.string().min(3).required(),
+        // id:joi.string().required(),
+        serviceid: joi.string().required(),
         amount: joi.number().min(3).required(),
         paid: joi.number(),
         rest: joi.number(),
-        descrbtion: joi.string().required(),
-        date: joi.date().required(),
+        description: joi.string().required(),
+        date: joi.string().required(),
     });
     return  schema.validate(valid);
   
