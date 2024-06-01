@@ -4,11 +4,11 @@ const userchema=mongoose.Schema({
     //     type:String,
     //     required:true
     // },
-    name:{
-        type:String,
-        required:true
-    },
-    email:{
+    // name:{
+    //     type:String,
+    //     required:true
+    // },
+    username:{
         type:String,
         required:true
     },
@@ -16,12 +16,12 @@ const userchema=mongoose.Schema({
         type:String,
         required:true
     },
-    role:{
-        type:String,
-        // required:true,
-        default:"admin",
-         enum:['superadmin','user']
-    }
+    // role:{
+    //     type:String,
+    //     // required:true,
+    //     default:"admin",
+    //      enum:['superadmin','user']
+    // }
 })
 
 module.exports=mongoose.model('usermodel',userchema);

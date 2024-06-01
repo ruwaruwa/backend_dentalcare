@@ -28,9 +28,9 @@ const getpeymentbyid = async (req, res) => {
 
 const validatepeyment = (valid) => {
     const schema = joi.object({
-        // id:joi.string().required(),
+        //  id:joi.string().required(),
         serviceid: joi.string().required(),
-        amount: joi.number().min(3).required(),
+        amount: joi.number().required(),
         paid: joi.number(),
         rest: joi.number(),
         description: joi.string().required(),

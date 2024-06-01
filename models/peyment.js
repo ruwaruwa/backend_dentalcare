@@ -7,7 +7,7 @@ peymentSchema=mongoose.Schema({
     // },
     serviceid:{
     type:mongoose.Types.ObjectId,
-required:true,
+// required:true,
 ref:"servicemodel"
     },
     amount:{
